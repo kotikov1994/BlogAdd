@@ -150,6 +150,8 @@
     <Content Include="Content\images\arrow.png" />
     <Content Include="Content\images\avatar-comment.png" />
     <Content Include="Content\images\avatar.png" />
+    <Content Include="Content\images\avatarIlya-comment.png" />
+    <Content Include="Content\images\avatarIlya.png" />
     <Content Include="Content\images\date-article.png" />
     <Content Include="Content\images\fc-ico.png" />
     <Content Include="Content\images\photo-main.png" />
