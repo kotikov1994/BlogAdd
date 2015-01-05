@@ -27,5 +27,15 @@ namespace TemplateTest1.Controllers
             var model = new ArticleModel();
             return View(model);
         }
+        public ActionResult Index3()
+        {
+            var model = new ArticleModel();
+            return View(model);
+        }
+        public ActionResult Index4()
+        {
+            var model = new ArticleModel();
+            return View(model);
+        }
     }
 }
