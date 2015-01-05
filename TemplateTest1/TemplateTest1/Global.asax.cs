@@ -16,7 +16,7 @@ namespace TemplateTest1
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+           AreaRegistration.RegisterAllAreas(); //область
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
