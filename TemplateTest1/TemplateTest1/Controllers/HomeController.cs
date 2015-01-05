@@ -12,27 +12,41 @@ namespace TemplateTest1.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index()
-        {
-            var model = new ArticleModel();
-            return View( model);
-        }
+        //public ActionResult Index()
+        //{
+        //    var model = new ArticleModel();
+        //    return View( model);
+        //}
+
         public ActionResult Index1()
         {
             var model = new ArticleModel();
             return View(model);
         }
-        public ActionResult AddComment(AddCommentModel model)
+
+       
+        //public ActionResult AddComment(AddCommentModel model)
+        //{
+        //    return RedirectToAction("index", "home");
+        //}
+
+        [HttpGet]
+        public ActionResult Index()
         {
-            return RedirectToAction("index", "home");
+            string query = Request.QueryString["Foo"];
+            var model = new ArticleModel();
+            return View(model);
         }
 
-      //  public ActionResult Index()
-      //  {
-       //     string query = Request.QueryString["Foo"];
-        //    var model = new ArticleModel();
-         //   return View(model);
-        //}
+        [HttpPost]
+        public ActionResult Index(AddCommentModel model)
+        {
+            if (!string.IsNullOrWhiteSpace(model.Comment))
+            {
+                TemplateTest1.Repository.CommentsRepository.Comments.Add(model.Comment);
+            }            
+            return View(new ArticleModel());
+        }
        
     }
 }
