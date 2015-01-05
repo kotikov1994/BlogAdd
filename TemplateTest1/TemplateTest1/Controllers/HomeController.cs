@@ -22,6 +22,17 @@ namespace TemplateTest1.Controllers
             var model = new ArticleModel();
             return View(model);
         }
+        public ActionResult AddComment(AddCommentModel model)
+        {
+            return RedirectToAction("index", "home");
+        }
+
+      //  public ActionResult Index()
+      //  {
+       //     string query = Request.QueryString["Foo"];
+        //    var model = new ArticleModel();
+         //   return View(model);
+        //}
        
     }
 }

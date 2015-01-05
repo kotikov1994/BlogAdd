@@ -30,12 +30,5 @@
             </li>
         }
     </ul>
-    <div class="add-comment">
-        <textarea name="" placeholder="Your comment" class="txt-area"></textarea>
-        <div class="wrap-btn">
-            <button class="btn-cancel">Cancel</button>
-            <button class="btn-save">Save changes</button>
-            <p>Lorem ipsum dolor sit amet, <a href="#">adipiscing</a></p>
-        </div>
-    </div>
+    @Html.Partial("~/Views/Home/AddComment.cshtml", null, new ViewDataDictionary())
 </div>
