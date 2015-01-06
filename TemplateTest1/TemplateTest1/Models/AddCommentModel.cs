@@ -10,7 +10,8 @@ namespace TemplateTest1.Models
     public class AddCommentModel 
     {
         [Required(ErrorMessage= "Пожалуйста,введите {0}!")]
-        [Display(Name = "Комментарий")]       
+        [Display(Name = "Комментарий")]  
+        [StringLength(30)]
         public string Comment { get; set; }
     }
 }

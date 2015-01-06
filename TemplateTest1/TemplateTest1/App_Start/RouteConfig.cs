@@ -15,6 +15,8 @@ namespace TemplateTest1
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapRoute("Post", "post-{title}", new { Controller = "Home", action = "Index" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

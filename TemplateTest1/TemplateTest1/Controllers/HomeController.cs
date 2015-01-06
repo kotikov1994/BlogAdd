@@ -12,10 +12,14 @@ namespace TemplateTest1.Controllers
     public class HomeController : Controller
     {
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(string title)
         {
-            var model = new ArticleModel();
-            return View(model);
+            if(title == null)
+            {
+                title = "This is my first title";
+            }
+            var readers = new NewDataReader();
+            return View(readers.GetArticleModel(title));
         }
 
         [HttpPost]
@@ -25,10 +29,10 @@ namespace TemplateTest1.Controllers
             if (model.NewComment != null && ModelState.IsValid)
             {
                 CommentsRepository.Comments.Add(model.NewComment.Comment);
+                ModelState.Clear();
                 return View(new ArticleModel());
             }
             return View(model);
         }
-       
     }
 }
