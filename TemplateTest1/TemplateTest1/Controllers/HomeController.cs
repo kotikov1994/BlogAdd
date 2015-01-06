@@ -4,48 +4,30 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using TemplateTest1.Models;
+using TemplateTest1.Repository;
+
 
 namespace TemplateTest1.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
-        //public ActionResult Index()
-        //{
-        //    var model = new ArticleModel();
-        //    return View( model);
-        //}
-
-        public ActionResult Index1()
-        {
-            var model = new ArticleModel();
-            return View(model);
-        }
-
-       
-        //public ActionResult AddComment(AddCommentModel model)
-        //{
-        //    return RedirectToAction("index", "home");
-        //}
-
         [HttpGet]
         public ActionResult Index()
         {
-            string query = Request.QueryString["Foo"];
             var model = new ArticleModel();
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Index(AddCommentModel model)
+      //  [ValidateInput(false)]
+        public ActionResult Index(ArticleModel model)
         {
-            if (!string.IsNullOrWhiteSpace(model.Comment))
+            if (model.NewComment != null && ModelState.IsValid)
             {
-                TemplateTest1.Repository.CommentsRepository.Comments.Add(model.Comment);
-            }            
-            return View(new ArticleModel());
+                CommentsRepository.Comments.Add(model.NewComment.Comment);
+                return View(new ArticleModel());
+            }
+            return View(model);
         }
        
     }

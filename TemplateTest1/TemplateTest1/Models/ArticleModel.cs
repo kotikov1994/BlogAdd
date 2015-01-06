@@ -29,6 +29,8 @@ namespace TemplateTest1.Models
              {
                  return CommentsRepository.Comments;
              }
-         }    
+         }
+
+        public AddCommentModel NewComment { get; set; }
     }
 }
