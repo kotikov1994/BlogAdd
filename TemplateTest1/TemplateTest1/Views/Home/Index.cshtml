@@ -18,10 +18,8 @@
 </div>
 <div class="wrap-comments">
     <h2>Comments</h2>
-    <ul class="list-comment">
-        @if (Model.Comments != null)
-        {
-            foreach (string item in Model.Comments)
+    <ul class="list-comment">       
+            @foreach (string item in Model.Comments)
             {
                 <li>
                     <div class="avatar"><img src="~/Content/images/avatar-comment.png" alt="" /></div>
@@ -32,7 +30,6 @@
                     </div>
                 </li>
             }
-        }
     </ul>
     @Html.Partial("~/Views/Home/AddComment.cshtml")
 </div>

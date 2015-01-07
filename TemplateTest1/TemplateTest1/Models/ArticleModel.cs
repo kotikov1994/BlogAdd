@@ -20,6 +20,7 @@ namespace TemplateTest1.Models
             Body = "<p>Реал Сосьедад обыгрывает Барселону и поднимается с 16 на 13 строчку в Примере. Каталонцы продолжают черную серию на «Аноэта» и упускает возможность возглавить таблицу. У Реала на 1 очко больше и матч в запасе.<p>";
             Date = DateTime.Now;
             Likes = new Collection<LikeModel>();
+            comments = CommentsRepository.Comments;
         }
         public string Title { get; set; }
         public string Body { get; set; }
@@ -45,7 +46,7 @@ namespace TemplateTest1.Models
          {
              get
              {
-                 return CommentsRepository.Comments;
+                 return comments;
              }
          }
 

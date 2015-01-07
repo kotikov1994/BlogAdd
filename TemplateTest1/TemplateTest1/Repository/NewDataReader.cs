@@ -16,12 +16,15 @@ namespace TemplateTest1.Repository
         public ArticleModel GetArticleModel(string title)
         {
             PostModel postModel = null;
+            Collection<string> comments = null;
+
             using (var connection = new SqlConnection(ConfigurationManager.ConnectionStrings["mssql"].ConnectionString))
             {
                 connection.Open();
-                using (var command = new SqlCommand(String.Format("SELECT * FROM Post WHERE Title = '{0}'", title)))
+                using (var command = new SqlCommand("SELECT * FROM Post WHERE Title = @title"))
                 {
                     command.Connection = connection;
+                    command.Parameters.Add(new SqlParameter("title", title));
                     using (var reader = command.ExecuteReader())
                     {
                         if (reader.Read())
@@ -31,8 +34,40 @@ namespace TemplateTest1.Repository
 
                     }
                 }
+                 using (var command = new SqlCommand("SELECT Comment.* FROM Comment INNER JOIN Post ON Comment.PostID = Post.PostID WHERE Post.Title = @title"))
+                 {
+                     command.Connection = connection;
+                     command.Parameters.Add(new SqlParameter("title", title));
+                     comments = new Collection<string>();
+                     using (var reader = command.ExecuteReader())
+                     {
+                         while (reader.Read())
+                         {
+                             comments.Add(reader["Body"].ToString());
+                         }
+                     }
+                 }
             }
-            return new ArticleModel(postModel, null);
+            return new ArticleModel(postModel, comments);
         }
+
+        public void AddComment(string title, string comment)
+        {
+            using(var sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["mssql"].ConnectionString))
+            {
+                using(var sqlCommand= new SqlCommand(@"INSERT INTO Comment
+                SELECT PostID, @comment AS MyPost
+                FROM Post
+                WHERE Title = @title"))
+                {
+                    sqlCommand.Parameters.Add(new SqlParameter("comment", comment));
+                    sqlCommand.Parameters.Add(new SqlParameter("title", title));
+                    sqlCommand.Connection = sqlConnection;
+                    sqlConnection.Open();
+                    sqlCommand.ExecuteNonQuery();
+                }
+            }
+        }
+        
     }
 }
