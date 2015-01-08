@@ -16,9 +16,10 @@ namespace TemplateTest1.Models
         public ArticleModel()
         {
 
-            Title = "this is an article title";
-            Body = "<p>Реал Сосьедад обыгрывает Барселону и поднимается с 16 на 13 строчку в Примере. Каталонцы продолжают черную серию на «Аноэта» и упускает возможность возглавить таблицу. У Реала на 1 очко больше и матч в запасе.<p>";
-            Date = DateTime.Now;
+            post = new PostModel(
+                "This is an article title",
+                "<p>Реал Сосьедад обыгрывает Барселону и поднимается с 16 на 13 строчку в Примере. Каталонцы продолжают черную серию на «Аноэта» и упускает возможность возглавить таблицу. У Реала на 1 очко больше и матч в запасе.<p>",
+                DateTime.Now, 0);
             Likes = new Collection<LikeModel>();
             comments = CommentsRepository.Comments;
         }

@@ -27,10 +27,12 @@ body {background: #eeeeee;}
 .wrap-comments .list-comment li .date span {display: inline-block; margin-right: 20px; padding: 7px 0;}
 
 .add-comment {padding-top: 10px;}
+
 .add-comment .txt-area {width: 100%; padding: 10px; height: 90px; border-radius: 5px; border-color: #dcdcdc;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;}
+
 
 textarea::-webkit-input-placeholder {color: #ced7d7;}
 textarea:-moz-placeholder {color: #ced7d7;}

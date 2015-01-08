@@ -9,12 +9,14 @@ namespace Database.Models
     {
         private readonly string title, body;
         private readonly DateTime dateCreated;
+        private readonly int countComments;
 
-        public PostModel(string title, string body, DateTime dateCreated)
+        public PostModel(string title, string body, DateTime dateCreated,int countComments)
         {
             this.title = title;
             this.body = body;
             this.dateCreated = dateCreated;
+            this.countComments = countComments;
         }
 
         public string Title
@@ -38,6 +40,14 @@ namespace Database.Models
             get
             {
                 return dateCreated;
+            }
+        }
+
+        public int CountComments
+        {
+            get
+            {
+                return countComments;
             }
         }
     }

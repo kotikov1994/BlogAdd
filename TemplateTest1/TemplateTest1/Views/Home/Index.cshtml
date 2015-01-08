@@ -1,35 +1,46 @@
-﻿@model TemplateTest1.Models.ArticleModel
-    <div class="wrap-article">
+﻿@using TemplateTest1.Models
+@model TemplateTest1.Models.ArticleModel
+   <div class="post_section">
+
     @if (Model.Post != null)
     {
+        <span class="comment">@Model.Post.CountComments</span>
         <h2>@Model.Post.Title</h2>
-        <p class="date"><span>@Model.Post.DateCreated.Date.ToString("D")</span><span>@Model.Post.DateCreated.ToString("hh:mm")</span></p>
-        <div class="text-block">
-            @Html.Raw(Model.Post.Body)
-        </div>
+        <p>@Model.Post.DateCreated.Date.ToString("D") @Model.Post.DateCreated.ToString("hh:mm") | <strong>Author:</strong>| <strong>Category:</strong> <a href="#"></a></p>
+        <a href="http://www.templatemo.com/page/1" target="_parent"><img src="~/Content/images/templatemo_image_01.jpg" alt="image" /></a>
+        <p>@Html.Raw(Model.Post.Body)</p>
     }
+
 </div>
-<div class="wrap-soc-list">
-    <ul>
-        <li><a href="#"><img src="~/Content/images/fc-ico.png" alt="" /><span>123</span></a></li>
-        <li><a href="#"><img src="~/Content/images/fc-ico.png" alt="" /><span>123</span></a></li>
-        <li><a href="#"><img src="~/Content/images/fc-ico.png" alt="" /><span>123</span></a></li>
-    </ul>
+
+<div class="comment_tab">
+    Comments
 </div>
-<div class="wrap-comments">
-    <h2>Comments</h2>
-    <ul class="list-comment">       
-            @foreach (string item in Model.Comments)
+
+<div id="comment_section">
+    <ol class="comments first_level">
+        @if (Model.Comments != null)
+        {
+            foreach (string item in Model.Comments)
             {
                 <li>
-                    <div class="avatar"><img src="~/Content/images/avatar-comment.png" alt="" /></div>
-                    <div class="comment-text">
-                        <a href="#"></a>
-                        <p class="date"><span>@DateTime.Now.Date.ToString("D")</span><span>@DateTime.Now.Date.ToString("hh:mm")</span></p>
-                        <p>@item</p>
+                    <div class="comment_box commentbox1">
+
+                        <div class="gravatar">
+                            <img src="~/Content/images/avator.png" alt="author" />
+                        </div>
+
+                        <div class="comment_text">
+                            <div class="comment_author"><span class="date">@DateTime.Now.Date.ToString("D")</span><span class="time">@DateTime.Now.Date.ToString("hh:mm")</span></div>
+                            <p>@item</p>
+                            <div class="reply"><a href="#">Reply</a></div>
+                        </div>
+                        <div class="cleaner"></div>
                     </div>
                 </li>
             }
-    </ul>
-    @Html.Partial("~/Views/Home/AddComment.cshtml")
+        }
+    </ol>
 </div>
+
+@Html.Partial("~/Views/Home/AddComment.cshtml")

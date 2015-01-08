@@ -8,8 +8,8 @@
         @foreach (var item in Model.Items)
         {
             <li>
+                <p>@Html.ActionLink(item.Text, "Index", "Home", new { seoUrl = item.Text }, null)</p>
                 <p class="date">@item.Date.ToString("D")</p>
-                <p class="post"><a href="@item.URL">@item.text</a></p>
             </li>
         }
     </ul>
